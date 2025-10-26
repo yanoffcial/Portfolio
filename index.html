@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAN OFFICIAL - AI Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f3460 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,212,255,0.15), transparent);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,153,255,0.1), transparent);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 100px) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Image with Advanced Effects */
+        .profile-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 40px;
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #00ffff, #00d4ff);
+            background-size: 300% 300%;
+            animation: gradientRotate 4s linear infinite;
+            filter: blur(10px);
+            opacity: 0.8;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 6px solid #0a0a0f;
+            box-shadow: 
+                0 0 60px rgba(0,212,255,0.6),
+                0 0 120px rgba(0,212,255,0.3),
+                inset 0 0 30px rgba(0,212,255,0.1);
+            object-fit: contain;
+            background: linear-gradient(135deg, #0f1419, #1a1f2e);
+            padding: 10px;
+            animation: profilePulse 3s infinite;
+            z-index: 2;
+        }
+
+        @keyframes profilePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(0,212,255,0.6),
+                    0 0 120px rgba(0,212,255,0.3),
+                    inset 0 0 30px rgba(0,212,255,0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 80px rgba(0,212,255,0.8),
+                    0 0 160px rgba(0,212,255,0.4),
+                    inset 0 0 40px rgba(0,212,255,0.2);
+            }
+        }
+
+        /* Title with Glitch Effect */
+        h1 {
+            font-size: 5em;
+            margin: 30px 0 20px;
+            background: linear-gradient(90deg, #00d4ff 0%, #00ffff 50%, #00d4ff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #8899aa;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3.5em;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(90deg, #00d4ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.4em;
+            line-height: 2;
+            color: #b0c4de;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(0,153,255,0.05));
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(0,212,255,0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0,212,255,0.03);
+            border-left: 4px solid #00d4ff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(0,212,255,0.08);
+            transform: translateX(10px);
+        }
+
+        .info-label {
+            color: #00d4ff;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-value {
+            color: #d0e0f0;
+            font-size: 1.2em;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,153,255,0.03));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(0,212,255,0.25);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,212,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #00d4ff;
+            box-shadow: 
+                0 20px 60px rgba(0,212,255,0.3),
+                0 0 100px rgba(0,212,255,0.2);
+        }
+
+        .skill-title {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .skill-desc {
+            color: #a0b4c8;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .skill-bar {
+            background: rgba(0,212,255,0.1);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            background: linear-gradient(90deg, #00d4ff, #00ffff);
+            height: 100%;
+            border-radius: 6px;
+            animation: fillBar 2s ease-out;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,212,255,0.6);
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmerBar 2s infinite;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        @keyframes shimmerBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Vision Mission */
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 50px;
+        }
+
+        .vm-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,255,0.05));
+            padding: 60px;
+            border-radius: 30px;
+            border: 3px solid rgba(0,212,255,0.3);
+            backdrop-filter: blur(20px);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(0,212,255,0.15), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .vm-card:hover::before {
+            top: -50%;
+            left: -50%;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-20px);
+            border-color: #00d4ff;
+            box-shadow: 0 30px 80px rgba(0,212,255,0.4);
+        }
+
+        .vm-icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(0,212,255,0.6));
+        }
+
+        .vm-card h3 {
+            font-size: 2.5em;
+            color: #00d4ff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 800;
+        }
+
+        .vm-card p {
+            color: #c0d0e0;
+            font-size: 1.3em;
+            line-height: 2;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,153,255,0.03));
+            padding: 50px;
+            border-radius: 25px;
+            border: 2px solid rgba(0,212,255,0.25);
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .contact-card:hover {
+            transform: scale(1.08);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0,212,255,0.4);
+        }
+
+        .contact-icon {
+            font-size: 4em;
+            margin-bottom: 25px;
+            color: #00d4ff;
+            filter: drop-shadow(0 0 15px rgba(0,212,255,0.6));
+        }
+
+        .contact-card h3 {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #b0c4de;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(5,5,10,0.9);
+            border-top: 2px solid rgba(0,212,255,0.2);
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #8899aa;
+            font-size: 1.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3em; }
+            .subtitle { font-size: 1.3em; }
+            .about-grid { grid-template-columns: 1fr; }
+            .vm-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 20px; }
+            .section-title { font-size: 2.5em; }
+            .profile-container { width: 220px; height: 220px; }
+            .profile-image { width: 220px; height: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-container">
+                <div class="profile-ring"></div>
+                <img src="profile.jpg" alt="YAN OFFICIAL" class="profile-image">
+            </div>
+            <h1>YAN OFFICIAL</h1>
+            <p class="subtitle">AI Developer</p>
+            <p class="tagline">Fokus pada pengembangan AI dan teknologi masa depan</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Fokus pada pengembangan AI dan teknologi masa depan.</p>
+            </div>
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-label">Nama</div>
+                    <div class="info-value">YAN OFFICIAL</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Profesi</div>
+                    <div class="info-value">AI Developer</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Lokasi</div>
+                    <div class="info-value">Indonesia</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Status</div>
+                    <div class="info-value">Open for AI Projects & Collaborations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(0,212,255,0.02);">
+        <h2 class="section-title">Keahlian</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-title">🤖 Machine Learning</div>
+                <p class="skill-desc">Pengembangan model AI dan algoritma pembelajaran mesin.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">🧠 Deep Learning</div>
+                <p class="skill-desc">Neural networks dan arsitektur AI canggih.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 92%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">💬 NLP</div>
+                <p class="skill-desc">Pemrosesan bahasa alami dan chatbot AI.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">👁️ Computer Vision</div>
+                <p class="skill-desc">Pengenalan gambar dan analisis visual dengan AI.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 88%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">📊 Data Science</div>
+                <p class="skill-desc">Analisis data dan visualisasi untuk AI insights.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 93%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">⚡ AI Automation</div>
+                <p class="skill-desc">Otomasi proses dengan kecerdasan buatan.</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 91%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Visi & Misi</h2>
+        <div class="vm-grid">
+            <div class="vm-card">
+                <div class="vm-icon">🎯</div>
+                <h3>Visi</h3>
+                <p>Menjadi developer AI terdepan yang menciptakan solusi teknologi inovatif untuk masa depan yang lebih baik.</p>
+            </div>
+            <div class="vm-card">
+                <div class="vm-icon">🚀</div>
+                <h3>Misi</h3>
+                <p>Mengembangkan project AI berkualitas tinggi yang memberikan dampak positif dan memajukan teknologi kecerdasan buatan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(0,212,255,0.02);">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p>yanoffcial040@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 YAN OFFICIAL. All Rights Reserved.</p>
+    </footer>
+</body>
+  </html>
